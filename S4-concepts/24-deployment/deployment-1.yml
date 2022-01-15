@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+    type: frontend
+spec:
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: frontend
+        #pode ser env
+        type: frontend
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.19.4
+  selector:
+    matchLabels:
+      #pode ser env
+      type: frontend
+  replicas: 6
